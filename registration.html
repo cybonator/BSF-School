@@ -516,9 +516,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="instagram" class="form-label">Instagram ID</label>
-                    <input type="text" id="instagram" name="instagram" class="form-input" placeholder="Without @ symbol">
-                    <div class="validation-message" id="instagramValidation">Enter your Instagram username without @ symbol.</div>
+                    <label for="instagram" class="form-label required">Instagram ID</label>
+                    <input type="text" id="instagram" name="instagram" class="form-input" placeholder="Without @ symbol" required>
+                    <div class="validation-message" id="instagramValidation">Instagram ID is required for alumni directory.</div>
                 </div>
 
                 <div class="form-group">
@@ -593,6 +593,7 @@
         const nameInput = document.getElementById('name');
         const surnameInput = document.getElementById('surname');
         const dobInput = document.getElementById('dob');
+        const instagramInput = document.getElementById('instagram');
         const emailInput = document.getElementById('email');
         const whatsappInput = document.getElementById('whatsapp');
         const pincodeInput = document.getElementById('pincode');
@@ -609,6 +610,7 @@
         // Validation Patterns
         const patterns = {
             name: /^[A-Za-z\s]{1,30}$/,
+            instagram: /^(?!.*\.\.)(?!.*\.$)(?!^\.)[a-zA-Z0-9._]{1,30}$/,
             email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
             whatsapp: /^[\+]?[1-9][\d]{0,15}$/,
             pincode: /^\d{6}$/
@@ -657,6 +659,40 @@
             input.classList.remove('invalid');
             input.classList.add('valid');
             validationEl.textContent = 'Name format looks good!';
+            validationEl.classList.remove('invalid');
+            validationEl.classList.add('valid');
+            return true;
+        }
+
+        // Instagram ID validation
+        function validateInstagram(input, validationEl) {
+            const value = input.value.trim();
+            
+            if (!value) {
+                input.classList.remove('valid', 'invalid');
+                validationEl.textContent = 'Instagram ID is required for alumni directory.';
+                validationEl.classList.remove('valid');
+                validationEl.classList.add('invalid');
+                return false;
+            }
+            
+            // Remove @ symbol if present
+            const cleanValue = value.replace('@', '');
+            
+            // Check if Instagram ID follows the pattern
+            if (!patterns.instagram.test(cleanValue)) {
+                input.classList.remove('valid');
+                input.classList.add('invalid');
+                validationEl.textContent = 'Please enter a valid Instagram username (letters, numbers, periods, underscores only).';
+                validationEl.classList.remove('valid');
+                validationEl.classList.add('invalid');
+                return false;
+            }
+            
+            input.value = cleanValue;
+            input.classList.remove('invalid');
+            input.classList.add('valid');
+            validationEl.textContent = 'Instagram ID looks good!';
             validationEl.classList.remove('invalid');
             validationEl.classList.add('valid');
             return true;
@@ -796,6 +832,7 @@
             // Validate all required fields
             isValid = validateName(nameInput, document.getElementById('nameValidation')) && isValid;
             isValid = validateName(surnameInput, document.getElementById('surnameValidation')) && isValid;
+            isValid = validateInstagram(instagramInput, document.getElementById('instagramValidation')) && isValid;
             isValid = validateEmail(emailInput, document.getElementById('emailValidation')) && isValid;
             isValid = validateWhatsApp(whatsappInput, document.getElementById('whatsappValidation')) && isValid;
             isValid = validatePincode(pincodeInput, document.getElementById('pincodeValidation')) && isValid;
@@ -902,6 +939,7 @@
         // Real-time validation
         nameInput.addEventListener('input', () => validateName(nameInput, document.getElementById('nameValidation')));
         surnameInput.addEventListener('input', () => validateName(surnameInput, document.getElementById('surnameValidation')));
+        instagramInput.addEventListener('input', () => validateInstagram(instagramInput, document.getElementById('instagramValidation')));
         emailInput.addEventListener('input', () => validateEmail(emailInput, document.getElementById('emailValidation')));
         whatsappInput.addEventListener('input', () => validateWhatsApp(whatsappInput, document.getElementById('whatsappValidation')));
         pincodeInput.addEventListener('input', () => validatePincode(pincodeInput, document.getElementById('pincodeValidation')));

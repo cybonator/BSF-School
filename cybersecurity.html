@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Security Guidelines - BSF School Alumni Network</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --bg-card-hover: #2a2a2a;
+            --primary: #bb86fc;
+            --primary-variant: #3700b3;
+            --secondary: #03dac6;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --accent: #cf6679;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --success: #4caf50;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background: var(--bg-card);
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 25px;
+            width: 100%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            background: #2c3e50;
+        }
+
+        .title {
+            font-size: 20px;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 3px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            background-color: rgba(187, 134, 252, 0.1);
+        }
+
+        /* Content Container */
+        .content-container {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .content-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+        }
+
+        .content-title {
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .content-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            font-size: 24px;
+        }
+
+        .section-content {
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: rgba(255, 152, 0, 0.1);
+            border-left: 4px solid var(--warning);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .warning-title {
+            color: var(--warning);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Danger Box */
+        .danger-box {
+            background: rgba(244, 67, 54, 0.1);
+            border-left: 4px solid var(--danger);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .danger-title {
+            color: var(--danger);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Success Box */
+        .success-box {
+            background: rgba(76, 175, 80, 0.1);
+            border-left: 4px solid var(--success);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .success-title {
+            color: var(--success);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: rgba(3, 218, 198, 0.1);
+            border-left: 4px solid var(--secondary);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .info-title {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style-type: none;
+            margin: 15px 0;
+        }
+
+        .checklist li {
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .checklist li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Legal Disclaimer */
+        .legal-disclaimer {
+            background: rgba(187, 134, 252, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .legal-title {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 13px;
+            padding: 15px;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .title {
+                font-size: 18px;
+            }
+            
+            .logo {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .content-container {
+                padding: 20px;
+            }
+            
+            .content-title {
+                font-size: 24px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .title {
+                font-size: 16px;
+            }
+            
+            .subtitle {
+                font-size: 12px;
+            }
+            
+            .nav-link {
+                font-size: 12px;
+                padding: 5px 10px;
+            }
+            
+            .content-container {
+                padding: 15px;
+            }
+            
+            .content-title {
+                font-size: 22px;
+            }
+            
+            .content-subtitle {
+                font-size: 14px;
+            }
+            
+            .section-title {
+                font-size: 18px;
+            }
+            
+            .warning-box, .danger-box, .success-box, .info-box, .legal-disclaimer {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="logo.png" alt="BSF School Alumni Network Logo" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div>
+                    <h1 class="title">BSF School Alumni Network</h1>
+                    <p class="subtitle">Connecting Alumni Across Generations</p>
+                </div>
+            </div>
+            
+            <nav>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="team.html" class="nav-link">Our Team</a>
+                <a href="cybersecurity.html" class="nav-link active">Cyber Security</a>
+            </nav>
+        </header>
+
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+
+        <div class="content-container">
+            <div class="content-header">
+                <h1 class="content-title">Cyber Security Guidelines</h1>
+                <p class="content-subtitle">Protecting Your Digital Identity and Data</p>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-shield-alt"></i> Understanding Cyber Security</h2>
+                <div class="section-content">
+                    <p>Cybersecurity refers to the practice of protecting systems, networks, and programs from digital attacks. These cyberattacks are usually aimed at accessing, changing, or destroying sensitive information; extorting money from users; or interrupting normal business processes.</p>
+                    
+                    <div class="info-box">
+                        <h3 class="info-title"><i class="fas fa-info-circle"></i> Why It Matters</h3>
+                        <p>In today's interconnected world, everyone benefits from advanced cyber defense programs. At an individual level, a cybersecurity attack can result in everything from identity theft to extortion attempts, to the loss of important data like family photos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-exclamation-triangle"></i> Potential Cyber Security Hazards</h2>
+                <div class="section-content">
+                    <div class="danger-box">
+                        <h3 class="danger-title"><i class="fas fa-skull-crossbones"></i> Phishing Attacks</h3>
+                        <p>Fraudulent attempts to obtain sensitive information by disguising as a trustworthy entity. Attackers may send emails that appear to be from legitimate organizations asking for your login credentials, financial information, or personal data.</p>
+                    </div>
+
+                    <div class="danger-box">
+                        <h3 class="danger-title"><i class="fas fa-lock"></i> Identity Theft</h3>
+                        <p>When someone steals your personal information to commit fraud. This can include using your name, Aadhaar number, bank account details, or other identifying information without your permission.</p>
+                    </div>
+
+                    <div class="danger-box">
+                        <h3 class="danger-title"><i class="fas fa-bug"></i> Malware & Ransomware</h3>
+                        <p>Malicious software designed to harm or exploit any programmable device or network. Ransomware specifically locks your data and demands payment for its release.</p>
+                    </div>
+
+                    <div class="danger-box">
+                        <h3 class="danger-title"><i class="fas fa-wifi"></i> Unsecured Networks</h3>
+                        <p>Using public Wi-Fi networks without proper security measures can expose your data to interception by cybercriminals.</p>
+                    </div>
+
+                    <div class="danger-box">
+                        <h3 class="danger-title"><i class="fas fa-user-secret"></i> Social Engineering</h3>
+                        <p>Psychological manipulation of people into performing actions or divulging confidential information. This can happen through phone calls, messages, or in-person interactions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-user-shield"></i> Essential Cyber Security Practices</h2>
+                <div class="section-content">
+                    <div class="success-box">
+                        <h3 class="success-title"><i class="fas fa-check-circle"></i> Password Security</h3>
+                        <ul class="checklist">
+                            <li>Use strong, unique passwords for different accounts</li>
+                            <li>Enable two-factor authentication wherever possible</li>
+                            <li>Never share passwords via email or text messages</li>
+                            <li>Use a reputable password manager</li>
+                        </ul>
+                    </div>
+
+                    <div class="success-box">
+                        <h3 class="success-title"><i class="fas fa-network-wired"></i> Network Security</h3>
+                        <ul class="checklist">
+                            <li>Avoid using public Wi-Fi for sensitive transactions</li>
+                            <li>Use a VPN when accessing public networks</li>
+                            <li>Keep your router firmware updated</li>
+                            <li>Change default router passwords</li>
+                        </ul>
+                    </div>
+
+                    <div class="success-box">
+                        <h3 class="success-title"><i class="fas fa-envelope"></i> Email & Communication Safety</h3>
+                        <ul class="checklist">
+                            <li>Verify sender addresses before clicking links</li>
+                            <li>Don't open attachments from unknown sources</li>
+                            <li>Be cautious of urgent or threatening language in emails</li>
+                            <li>Check for spelling and grammar errors in suspicious emails</li>
+                        </ul>
+                    </div>
+
+                    <div class="success-box">
+                        <h3 class="success-title"><i class="fas fa-mobile-alt"></i> Device Security</h3>
+                        <ul class="checklist">
+                            <li>Keep operating systems and apps updated</li>
+                            <li>Install reputable antivirus software</li>
+                            <li>Enable device encryption</li>
+                            <li>Regularly back up important data</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-balance-scale"></i> Cyber Security Laws in India</h2>
+                <div class="section-content">
+                    <p>India has established legal frameworks to address cyber crimes and protect digital citizens:</p>
+                    
+                    <div class="info-box">
+                        <h3 class="info-title"><i class="fas fa-gavel"></i> Information Technology Act, 2000</h3>
+                        <p>The primary law dealing with cybercrime and electronic commerce in India. Key sections include:</p>
+                        <ul class="checklist">
+                            <li><strong>Section 43:</strong> Penalty for damage to computer, computer system</li>
+                            <li><strong>Section 66:</strong> Computer related offenses</li>
+                            <li><strong>Section 66C:</strong> Identity theft</li>
+                            <li><strong>Section 66D:</strong> Cheating by personation using computer resource</li>
+                            <li><strong>Section 67:</strong> Publishing obscene information electronically</li>
+                        </ul>
+                    </div>
+
+                    <div class="warning-box">
+                        <h3 class="warning-title"><i class="fas fa-exclamation-circle"></i> Legal Consequences</h3>
+                        <p>Cyber crimes in India can lead to:</p>
+                        <ul>
+                            <li>Imprisonment ranging from 3 years to life depending on the severity</li>
+                            <li>Fines ranging from ₹1 lakh to ₹10 crore</li>
+                            <li>Both imprisonment and fines in many cases</li>
+                            <li>Civil liability for damages caused</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h3 class="info-title"><i class="fas fa-shield-alt"></i> Indian Computer Emergency Response Team (CERT-In)</h3>
+                        <p>CERT-In is the national nodal agency for responding to computer security incidents. If you're a victim of cyber crime, you should:</p>
+                        <ul class="checklist">
+                            <li>Report to your local police station or cyber crime cell</li>
+                            <li>File a complaint at <a href="https://cybercrime.gov.in" style="color: var(--secondary);">cybercrime.gov.in</a></li>
+                            <li>Contact CERT-In for technical assistance</li>
+                            <li>Preserve all evidence related to the incident</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-database"></i> Data Protection on This Website</h2>
+                <div class="section-content">
+                    <div class="info-box">
+                        <h3 class="info-title"><i class="fas fa-lock"></i> Our Commitment to Data Security</h3>
+                        <p>The BSF School Alumni Network implements reasonable security practices and procedures to protect your personal information from unauthorized access, damage, use, modification, disclosure, or impairment.</p>
+                    </div>
+
+                    <div class="legal-disclaimer">
+                        <h3 class="legal-title">IMPORTANT LEGAL DISCLAIMER</h3>
+                        <p>While we implement security measures to protect your data, please understand that:</p>
+                        <ul style="margin: 15px 0; padding-left: 20px;">
+                            <li style="margin-bottom: 10px;">No method of transmission over the Internet or method of electronic storage is 100% secure</li>
+                            <li style="margin-bottom: 10px;">We cannot guarantee absolute security of any information you transmit to us</li>
+                            <li style="margin-bottom: 10px;">You provide your personal information at your own risk</li>
+                            <li style="margin-bottom: 10px;">We are not liable for any security breaches that may occur beyond our reasonable control</li>
+                            <li style="margin-bottom: 10px;">In case of any data breach or security incident, the website administration shall not be held responsible for any direct, indirect, incidental, or consequential damages</li>
+                        </ul>
+                        <p style="margin-top: 15px; font-style: italic;">By using this website and providing your information, you acknowledge and accept these risks and agree that the BSF School Alumni Network, its administrators, and team members shall not be held liable for any security incidents, data breaches, or resulting damages.</p>
+                    </div>
+
+                    <div class="warning-box">
+                        <h3 class="warning-title"><i class="fas fa-user-check"></i> Your Responsibilities</h3>
+                        <p>As a user of this platform, you agree to:</p>
+                        <ul class="checklist">
+                            <li>Keep your login credentials secure and confidential</li>
+                            <li>Notify us immediately of any unauthorized use of your account</li>
+                            <li>Not share sensitive personal information in public areas of the website</li>
+                            <li>Log out after each session, especially on shared devices</li>
+                            <li>Regularly review your privacy settings</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-question-circle"></i> Need Help or Have Concerns?</h2>
+                <div class="section-content">
+                    <p>If you suspect any security issues with your account or have questions about these guidelines:</p>
+                    <ul class="checklist">
+                        <li>Contact our admin team immediately</li>
+                        <li>Change your password if you suspect unauthorized access</li>
+                        <li>Report any suspicious activity to website administrators</li>
+                        <li>For legal concerns, consult with a cyber law expert</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>BSF School Alumni Network &copy; 2023 | Connecting Past, Present and Future</p>
+        </footer>
+    </div>
+</body>
+</html>

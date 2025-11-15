@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - BSF School Alumni Network</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --bg-card-hover: #2a2a2a;
+            --primary: #bb86fc;
+            --primary-variant: #3700b3;
+            --secondary: #03dac6;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --accent: #cf6679;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 40px;
+            width: 100%;
+            position: relative;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: #2c3e50;
+        }
+
+        .title {
+            font-size: 28px;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            background-color: rgba(187, 134, 252, 0.1);
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            background-color: rgba(187, 134, 252, 0.1);
+        }
+
+        /* About Content */
+        .about-container {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .about-title {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .about-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+        }
+
+        .story-section {
+            margin-bottom: 40px;
+        }
+
+        .story-quote {
+            font-style: italic;
+            border-left: 4px solid var(--primary);
+            padding-left: 20px;
+            margin: 30px 0;
+            color: var(--text-secondary);
+        }
+
+        .story-paragraph {
+            margin-bottom: 20px;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .mission-section {
+            background: rgba(187, 134, 252, 0.05);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 40px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .mission-title {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            padding: 20px;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            gap: 12px;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .title {
+                font-size: 24px;
+            }
+            
+            .logo {
+                width: 60px;
+                height: 60px;
+                font-size: 10px;
+            }
+            
+            .about-container {
+                padding: 25px;
+            }
+            
+            .about-title {
+                font-size: 28px;
+            }
+            
+            .story-paragraph {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 20px;
+            }
+            
+            .about-container {
+                padding: 20px;
+            }
+            
+            .about-title {
+                font-size: 24px;
+            }
+            
+            .mission-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="logo.png" alt="BSF School Alumni Network Logo" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div>
+                    <h1 class="title">BSF School Alumni Network</h1>
+                    <p class="subtitle">Connecting Alumni Across Generations</p>
+                </div>
+            </div>
+            
+            <nav>
+                <a href="index.html" class="nav-link">Home</a>
+            
+            </nav>
+        </header>
+
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+
+        <div class="about-container">
+            <div class="about-header">
+                <h1 class="about-title">About This Club</h1>
+                <p class="about-subtitle">The story behind our mission to connect BSF School alumni</p>
+            </div>
+
+            <div class="story-section">
+                <p class="story-paragraph">
+                    A few months back, I was on a late-night call with my school friend Shubam — the same Shubam from BSF School Jammu who's now a successful music artist.
+                </p>
+                
+                <p class="story-paragraph">
+                    He was back in India. I was in the UK doing my promotional courses.
+                </p>
+                
+                <p class="story-paragraph">
+                    We drifted into a conversation about something simple but powerful. I told him how schools and colleges here have this strong culture where seniors guide their juniors. Not in a formal way. Just genuine advice about careers, opportunities, mistakes to avoid, and how to navigate life. A chain of guidance that keeps growing.
+                </p>
+                
+                <p class="story-quote">
+                    "Imagine if we had that… how many kids from our own school would move faster, think bigger."
+                </p>
+                
+                <p class="story-paragraph">
+                    That line stuck with me.
+                </p>
+                
+                <p class="story-paragraph">
+                    We aren't old. We're just a few steps ahead. But we both realised that even those few steps matter to someone who's starting.
+                </p>
+                
+                <p class="story-paragraph">
+                    That call made one thing clear: If we don't pass on what we learn, the next batch starts from zero every time. But if we build a space where every BSF School alumnus can connect, share, and pull the next person up — then our school becomes more than a memory. It becomes a network. A support system. A place where one generation quietly lifts the next.
+                </p>
+            </div>
+
+            <div class="mission-section">
+                <h2 class="mission-title">Our Mission</h2>
+                <p class="story-paragraph">
+                    This idea, this culture, this responsibility — that's what we want to create here. The BSF School Alumni Network is more than just a website; it's a living community built on the simple belief that <span class="highlight">we grow stronger when we grow together</span>.
+                </p>
+                <p class="story-paragraph">
+                    Through this platform, we aim to bridge the gap between generations of BSF School students, creating a continuous cycle of guidance, support, and opportunity that benefits everyone involved.
+                </p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>BSF School Alumni Network &copy; 2023 | Connecting Past, Present and Future</p>
+        </footer>
+    </div>
+
+    <script>
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = 0;
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = 1;
+            }, 100);
+        });
+    </script>
+</body>
+</html>

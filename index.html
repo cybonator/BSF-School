@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSF School Alumni Network</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --bg-card-hover: #2a2a2a;
+            --primary: #bb86fc;
+            --primary-variant: #3700b3;
+            --secondary: #03dac6;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --accent: #cf6679;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 40px;
+            width: 100%;
+            position: relative;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: #2c3e50;
+        }
+
+        .title {
+            font-size: 28px;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            background-color: rgba(187, 134, 252, 0.1);
+        }
+
+        /* Tiles Grid - 3x3 Square Layout */
+        .tiles-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 100%;
+            margin: 0 auto 40px;
+        }
+
+        .tile {
+            background: var(--bg-card);
+            border-radius: 16px; /* Slightly less rounded */
+            padding: 25px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            aspect-ratio: 1 / 1; /* Make tiles square */
+            min-height: 160px; /* Reduced height */
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tile:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            background: var(--bg-card-hover);
+        }
+
+        .tile:nth-child(1) {
+            border-top: 4px solid var(--primary);
+        }
+
+        .tile:nth-child(2) {
+            border-top: 4px solid var(--secondary);
+        }
+
+        .tile:nth-child(3) {
+            border-top: 4px solid var(--accent);
+        }
+
+        .tile:nth-child(4) {
+            border-top: 4px solid #ff9800;
+        }
+
+        .tile:nth-child(5) {
+            border-top: 4px solid #4caf50;
+        }
+
+        .tile:nth-child(6) {
+            border-top: 4px solid #2196f3;
+        }
+
+        .tile:nth-child(7) {
+            border-top: 4px solid #9c27b0;
+        }
+
+        .tile:nth-child(8) {
+            border-top: 4px solid #00bcd4;
+        }
+
+        .tile:nth-child(9) {
+            border-top: 4px solid #ff5722;
+        }
+
+        .tile-icon {
+            font-size: 32px; /* Reduced icon size */
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .tile-title {
+            font-size: 18px; /* Reduced title size */
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .tile-description {
+            font-size: 13px; /* Reduced description size */
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 24px;
+        }
+
+        .floating-btn.register {
+            background: var(--primary);
+            color: white;
+        }
+
+        .floating-btn.notification {
+            background: var(--secondary);
+            color: var(--bg-dark);
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Notification Panel */
+        .notification-panel {
+            position: fixed;
+            bottom: 120px;
+            right: 30px;
+            width: 320px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            z-index: 1001;
+            display: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .notification-panel.active {
+            display: block;
+        }
+
+        .notification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .notification-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .notification-content {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .notification-item {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            padding: 20px;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 992px) {
+            .tiles-container {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+            
+            .tile {
+                padding: 20px 10px;
+                min-height: 140px;
+                border-radius: 14px;
+            }
+            
+            .tile-icon {
+                font-size: 28px;
+            }
+            
+            .tile-title {
+                font-size: 16px;
+            }
+            
+            .tile-description {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .tiles-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .title {
+                font-size: 24px;
+            }
+            
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .notification-panel {
+                width: calc(100vw - 60px);
+                right: 30px;
+                left: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 20px;
+            }
+            
+            .tiles-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .tile {
+                padding: 15px 8px;
+                min-height: 120px;
+                border-radius: 12px;
+            }
+            
+            .tile-title {
+                font-size: 15px;
+            }
+            
+            .tile-icon {
+                font-size: 24px;
+                margin-bottom: 8px;
+            }
+            
+            .tile-description {
+                font-size: 11px;
+            }
+            
+            .floating-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .notification-panel {
+                bottom: 100px;
+                right: 20px;
+                left: 20px;
+                width: auto;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .tiles-container {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .tile {
+                min-height: 110px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="logo.png" alt="BSF School Alumni Network Logo" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div>
+                    <h1 class="title">BSF School Jammu Alumni Network</h1>
+                    <p class="subtitle">Connecting Alumni Across Generations</p>
+                </div>
+            </div>
+            
+            <nav>
+                <a href="about.html" class="nav-link">About this Club</a>
+                <a href="team.html" class="nav-link">Our Team</a>
+                <a href="cybersecurity.html" class="nav-link">Cyber Security Guidelines</a>
+            </nav>
+        </header>
+
+        <div class="tiles-container">
+            <div class="tile" onclick="window.location.href='alumni-list.html'">
+                <div class="tile-icon"><i class="fas fa-users"></i></div>
+                <h2 class="tile-title">List of our Alumni</h2>
+                <p class="tile-description">Browse our extensive directory of alumni members</p>
+            </div>
+            
+            <div class="tile" onclick="window.location.href='partners.html'">
+                <div class="tile-icon"><i class="fas fa-handshake"></i></div>
+                <h2 class="tile-title">Club Partners</h2>
+                <p class="tile-description">Organizations collaborating with our alumni network</p>
+            </div>
+            
+            <div class="tile" onclick="window.location.href='guidance.html'">
+                <div class="tile-icon"><i class="fas fa-graduation-cap"></i></div>
+                <h2 class="tile-title">Guidance for Students</h2>
+                <p class="tile-description">Career advice and mentorship opportunities</p>
+            </div>
+            
+            <div class="tile" onclick="window.location.href='news.html'">
+                <div class="tile-icon"><i class="fas fa-newspaper"></i></div>
+                <h2 class="tile-title">News</h2>
+                <p class="tile-description">Latest updates from our alumni community</p>
+            </div>
+            
+            <div class="tile" onclick="window.location.href='events.html'">
+                <div class="tile-icon"><i class="fas fa-calendar-alt"></i></div>
+                <h2 class="tile-title">Events</h2>
+                <p class="tile-description">View upcoming reunions, gatherings and activities</p>
+            </div>
+            
+            <div class="tile" onclick="window.location.href='coming-soon.html'">
+                <div class="tile-icon"><i class="fas fa-rocket"></i></div>
+                <h2 class="tile-title">Coming Soon</h2>
+                <p class="tile-description">Exciting new features are on the way</p>
+            </div>
+            
+            <div class="tile" onclick="window.location.href='gallery.html'">
+                <div class="tile-icon"><i class="fas fa-images"></i></div>
+                <h2 class="tile-title">Gallery</h2>
+                <p class="tile-description">Photos from alumni events and gatherings</p>
+            </div>
+            
+            <div class="tile" onclick="window.location.href='resources.html'">
+                <div class="tile-icon"><i class="fas fa-toolbox"></i></div>
+                <h2 class="tile-title">Resources</h2>
+                <p class="tile-description">Helpful documents and links for alumni</p>
+            </div>
+            
+            <div class="tile" onclick="window.location.href='contact.html'">
+                <div class="tile-icon"><i class="fas fa-envelope"></i></div>
+                <h2 class="tile-title">Contact Us</h2>
+                <p class="tile-description">Get in touch with the alumni network team</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>BSF School Alumni Network &copy; 2023 | Connecting Past, Present and Future</p>
+        </footer>
+    </div>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <div class="floating-btn notification" id="notificationBtn">
+            <i class="fas fa-bell"></i>
+        </div>
+        <div class="floating-btn register" onclick="window.location.href='registration.html'">
+            <i class="fas fa-user-plus"></i>
+        </div>
+    </div>
+
+    <!-- Notification Panel -->
+    <div class="notification-panel" id="notificationPanel">
+        <div class="notification-header">
+            <h3 class="notification-title">Notifications</h3>
+            <button class="close-btn" id="closeNotification">&times;</button>
+        </div>
+        <div class="notification-content">
+            <div class="notification-item">
+                <strong>Alumni Meet 2023</strong>
+                <p>Join us for the annual alumni meet on December 15th</p>
+            </div>
+            <div class="notification-item">
+                <strong>Mentorship Program</strong>
+                <p>New mentorship opportunities available for current students</p>
+            </div>
+            <div class="notification-item">
+                <strong>Website Update</strong>
+                <p>Our alumni portal has been updated with new features</p>
+            </div>
+            <div class="notification-item">
+                <strong>Job Portal</strong>
+                <p>Check out new job postings in the alumni network</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Notification Panel Toggle
+        const notificationBtn = document.getElementById('notificationBtn');
+        const notificationPanel = document.getElementById('notificationPanel');
+        const closeNotification = document.getElementById('closeNotification');
+
+        notificationBtn.addEventListener('click', function() {
+            notificationPanel.classList.toggle('active');
+        });
+
+        closeNotification.addEventListener('click', function() {
+            notificationPanel.classList.remove('active');
+        });
+
+        // Close notification panel when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!notificationPanel.contains(event.target) && 
+                !notificationBtn.contains(event.target) && 
+                notificationPanel.classList.contains('active')) {
+                notificationPanel.classList.remove('active');
+            }
+        });
+
+        // Simple error handling for tile clicks
+        document.querySelectorAll('.tile').forEach(tile => {
+            tile.addEventListener('click', function() {
+                // In a real application, this would navigate to the appropriate page
+                const title = this.querySelector('.tile-title').textContent;
+                console.log(`Navigating to: ${title}`);
+            });
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = 0;
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = 1;
+            }, 100);
+        });
+    </script>
+</body>
+</html>
